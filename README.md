@@ -11,6 +11,8 @@ The program will interact with:
 
 ### Goal 
 Move all images from legacy-s3 to production-s3 and update database paths.  
+Ability to run the below command in terminal to perform the migration: 
+`$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
 
 ### Dependencies 
 - AWS CLI installed and configured.  
@@ -26,9 +28,19 @@ Move all images from legacy-s3 to production-s3 and update database paths.
 - Check file pattern, move only file with "avatar-".
 - waiter to check files exist before updating the database.
 
+### Improvements
+- Implement Pagination incase there are lots of files to transfer S3 page max 1000 
+- Add another flag to define transfer method ie to use awscli clidriver
+`$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password] --method sync`
+
+
+
 ### Mitigation steps in production enviroment / Other options to avoid end user issues
 - Configure LB to requirect requests with `https://legacy-url/image/avatar-32425.png` to `https://modern-url/avatar/avatar-32425.png` to avoid having issues with users Avatars until the transfer of files is successful. 
+- Using CLI to sync s3 would be faster to sync files between legacy and prod bucket. 
 
 ### How to Run
 
+- 
+- Run `$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
 
