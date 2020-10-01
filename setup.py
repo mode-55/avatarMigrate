@@ -10,7 +10,7 @@ setup(
     long_description = readme,
     author='TJ',
     author_email='tj@mode55.co.uk',
-    install_requires=[],
+    install_requires=['boto3'],
     packages=find_packages('src'),
     package_dir={'':'src'}
 )
