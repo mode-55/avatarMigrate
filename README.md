@@ -20,6 +20,33 @@ Ability to run the below command in terminal to perform the migration:
 - Pipenv installed and configured
 - 
 
+### Preparing the development 
+
+- Ensure `pip` and `pipenv` are installed. 
+- Clone repository: `git clone git@github.com:....`
+- `cd` into the repository.
+- Fetch development dependencies `$ make install`
+- Activate virtualenv: `pipenv shell`   
+
+### How to Run Test 
+Run tests locally using `make` if virtualenv is active: 
+
+`$ make`
+
+If virtualenv is not active run: 
+
+`pipenv run make`
+
+
+### How to Run
+
+Pass in the source bucket, target bucket and DB details. All args are required. 
+
+- Run `$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
+
+
+
+
 ### Things to watchout for!
 - Roles and permissions ie access to S3 Read+Write, access to `production-db`
 - AWS CLI configuration 
@@ -39,8 +66,4 @@ Ability to run the below command in terminal to perform the migration:
 - Configure LB to requirect requests with `https://legacy-url/image/avatar-32425.png` to `https://modern-url/avatar/avatar-32425.png` to avoid having issues with users Avatars until the transfer of files is successful. 
 - Using CLI to sync s3 would be faster to sync files between legacy and prod bucket. 
 
-### How to Run
-
-- 
-- Run `$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
 
