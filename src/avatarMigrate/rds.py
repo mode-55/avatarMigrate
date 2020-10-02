@@ -35,7 +35,10 @@ def update_database():
 
     except Exception as e:
         print("Database connection failed due to {}".format(e))          
-
+    finally:
+        if (conn.is_connected()):
+            conn.close()
+            print("DB connection is closed")
 
 
 def create_sql_update_file(statement):
