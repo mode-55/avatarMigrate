@@ -20,20 +20,8 @@ Ability to run the below command in terminal to perform the migration:
 - AWS CLI installed and configured profile that has access to perform admin actions on S3, RDS.  
 - All resources must be valid `legacy-s3` `production-s3` `production-db`
 - Pipenv installed and configured
-- .env file containing details - env.sample is provided in the repo.  
-
-
-### Preparing the development 
-
-- Ensure `pip` and `pipenv` are installed. 
-- Clone repository: `git clone git@github.com:....`
-- `cd` into the repository.
-- Fetch development dependencies `$ make install`
-- Activate virtualenv: `pipenv shell` 
-- Run `pip install -e . ` to install the package in your local env (make sure your virtualenv is active) 
-- Then you can run:
-
-`$ avatarMigrate [source_bucket] [target_bucket] [update_db]`
+- .env file containing details - env.sample is provided in the repo. 
+- boto3, botocore, mysql-connector-python, python-dotenv  
 
 ### How to Run Test 
 Run tests locally using `make` if virtualenv is active: 
@@ -45,28 +33,43 @@ If virtualenv is not active run:
 `pipenv run make`
 
 
-### How to Run
+### How to install
 
-Pass in the source bucket, target bucket and DB details. All args are required. 
+- Please ensure that dependecies are installed and your .env file is created :
+
+```sh
+$ cd [your prefered location]
+$ touch .env
+$ pip3.8 install python-dotenv boto3 botocore mysql-connector-python
+$ pip3.8 install --user https://avatarmigrate.s3.eu-west-2.amazonaws.com/avatarMigrate-0.1.0-py38-none-any.whl 
+```
+- You might get a warning about PATH which you can create if needed by running:  
+
+```
+$ export PATH="/Users/os/Library/Python/3.8/bin:$PATH" 
+
+```
+- Now you can run `$avatarMigrate` and you should get help. 
+- Pass in the source bucket, target bucket and DB details. All args are required. 
 
 `$ avatarMigrate [source_bucket] [target_bucket] [update_db]`
 
 ### To Uninstall package 
 
-- Run ```pip uninstall avatarMigrate``` 
+- Run `$ pip3.8 uninstall avatarMigrate` 
 
 
 ### Things to watchout for!
-- Roles and permissions ie access to S3 Read+Write, access to `production-db`
-- AWS CLI configuration 
-- User Access and roles
-- Check is same region and account, if not add attach a bucket policy to the source bucket
+- Roles and permissions ie access to S3 Read+Write, access to both S3 buckets.
+- AWS CLI configuration.
+- User Access and roles.
+- Check is same region and account, if not add attach a bucket policy to the source bucket.
 - Check file pattern, move only file with "avatar-".
 - waiter to check files exist before updating the database.
 
 ### Improvements, performance and scalability
-- Implement Pagination incase there are lots of files to transfer S3 page max 1000 
-- Add another flag to define transfer method ie to use awscli clidriver 
+- Implement Pagination incase there are lots of files to transfer S3 page max 1000. done!
+- Add another flag to define transfer method ie to use awscli clidriver. TODO 
 
 `$ avatarMigrate [source_bucket] [target_bucket] [update_db] --method sync`
 

@@ -7,7 +7,6 @@ verify_ssl = true
 pylint = "*"
 pytest = "*"
 python-dotenv = "*"
-moto = "*"
 
 [packages]
 boto3 = "*"
