@@ -54,6 +54,13 @@ $ export PATH="/Users/os/Library/Python/3.8/bin:$PATH"
 
 `$ avatarMigrate [source_bucket] [target_bucket] [update_db]`
 
+- Example: 
+
+`$ avatarMigrate 'legacy-tj-s3' 'production-tj-s3' Yes`
+
+`$ avatarMigrate 'legacy-tj-s3' 'production-tj-s3' Yes`
+
+
 ### To Uninstall package 
 
 - Run `$ pip3.8 uninstall avatarMigrate` 
