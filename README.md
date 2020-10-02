@@ -58,7 +58,7 @@ $ export PATH="/Users/os/Library/Python/3.8/bin:$PATH"
 
 `$ avatarMigrate 'legacy-tj-s3' 'production-tj-s3' Yes`
 
-`$ avatarMigrate 'legacy-tj-s3' 'production-tj-s3' Yes`
+`$ avatarMigrate 'legacy-tj-s3' 'production-tj-s3' No`
 
 
 ### To Uninstall package 
