@@ -11,8 +11,8 @@ moto = "*"
 
 [packages]
 boto3 = "*"
-avatarmigrate = {editable = true, path = "."}
 botocore = "*"
+mysql-connector-python = "*"
 
 [requires]
 python_version = "3.8"

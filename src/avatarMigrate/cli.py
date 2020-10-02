@@ -10,7 +10,7 @@ def create_parser():
 def main():
     import boto3
     import botocore
-    from avatarMigrate import s3
+    from avatarMigrate import s3, rds
 
     args = create_parser().parse_args()
     s3.migrate_objects(args.source_bucket,args.target_bucket)

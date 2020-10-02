@@ -61,15 +61,23 @@ Pass in the source bucket, target bucket and DB details. All args are required.
 - Check file pattern, move only file with "avatar-".
 - waiter to check files exist before updating the database.
 
-### Improvements
+### Improvements, performance and scalability
 - Implement Pagination incase there are lots of files to transfer S3 page max 1000 
-- Add another flag to define transfer method ie to use awscli clidriver
+- Add another flag to define transfer method ie to use awscli clidriver 
+
 `$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password] --method sync`
 
+- Using clidriver you can sync which would run a lot faster than loop through objects. Below is sample of the approach:  
 
+```python 
+import os
+if os.environ.get('LC_CTYPE', '') == 'UTF-8':
+    os.environ['LC_CTYPE'] = 'en_US.UTF-8'
 
-### Mitigation steps in production enviroment / Other options to avoid end user issues
-- Configure LB to requirect requests with `https://legacy-url/image/avatar-32425.png` to `https://modern-url/avatar/avatar-32425.png` to avoid having issues with users Avatars until the transfer of files is successful. 
-- Using CLI to sync s3 would be faster to sync files between legacy and prod bucket. 
+from awscli.clidriver import create_clidriver
+driver = create_clidriver()
+driver.main('s3 sync s3://legacy-tj-s3/image/ s3://production-tj-s3/avatar/'.split())
+```
+- Alternatively configure LB to requirect requests with `https://legacy-url/image/avatar-32425.png` to `https://modern-url/avatar/avatar-32425.png` to avoid having issues with users Avatars until the transfer of files is successful and verified. 
 
 
