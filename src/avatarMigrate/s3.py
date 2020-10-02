@@ -1,4 +1,4 @@
-import boto3, json
+import boto3
 import botocore
 
 s3_client = boto3.client('s3')
@@ -24,7 +24,7 @@ def bucket_exists(bucket):
 
 
 def migrate_objects(source_bucket,target_bucket):
-    
+
     paginator = s3_client.get_paginator('list_objects_v2')
     kwargs = {
         'Bucket': source_bucket,

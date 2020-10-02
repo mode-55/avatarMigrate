@@ -26,7 +26,10 @@ Ability to run the below command in terminal to perform the migration:
 - Clone repository: `git clone git@github.com:....`
 - `cd` into the repository.
 - Fetch development dependencies `$ make install`
-- Activate virtualenv: `pipenv shell`   
+- Activate virtualenv: `pipenv shell` 
+- Run `pip install -e . ` to install the package in your local env (make sure your virtualenv is active) 
+- Then you can run:
+      `$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
 
 ### How to Run Test 
 Run tests locally using `make` if virtualenv is active: 

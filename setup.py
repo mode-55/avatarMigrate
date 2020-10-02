@@ -10,7 +10,13 @@ setup(
     long_description = readme,
     author='TJ',
     author_email='tj@mode55.co.uk',
-    install_requires=['boto3'],
+    install_requires=['boto3','botocore'],
     packages=find_packages('src'),
-    package_dir={'':'src'}
+    package_dir={'':'src'},
+    entry_points={
+        'console_scripts':[
+            'avatarMigrate=avatarMigrate.cli:main',
+            
+        ]
+    }
 )
