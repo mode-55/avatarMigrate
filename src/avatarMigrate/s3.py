@@ -46,7 +46,7 @@ def migrate_objects(source_bucket,target_bucket):
                         #keep a log to send to cloudwatch
                         copy_event_log += target_object_key + ' Found in ' + target_bucket + '\n'
                         #Build Mysql statement to update only the object that have been copied. 
-                        sql = 'UPDATE avatar set url = "'+target_object_key+'" WHERE url = "'+object_key+'";\n'
+                        sql = 'UPDATE test.avatar set url = "'+target_object_key+'" WHERE url = "'+object_key+'";\n'
                         rds.create_sql_update_file(sql)
 
                     except botocore.exceptions.ClientError as error:
@@ -54,7 +54,7 @@ def migrate_objects(source_bucket,target_bucket):
                     except botocore.exceptions.ParamValidationError as error:
                         raise ValueError('The parameters you provided are incorrect: {}'.format(error))
                 print(copy_event_log)
-
+                return True
             except KeyError:
                 break
     
