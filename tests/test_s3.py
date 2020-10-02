@@ -13,7 +13,7 @@ def test_buckets_exists():
         bucket_name = s3.validate_bucket(bucket)
         assert bucket == bucket_name
 
-def test_list_source_bucket_objects():
-    pass
+def test_migrate_objects():
+    s3.migrate_objects(os.getenv("SOURCE_BUCKET"),os.getenv("TARGET_BUCKET"))
 
 
