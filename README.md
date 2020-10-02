@@ -12,13 +12,13 @@ The program will interact with:
 ### Goal 
 Move all images from legacy-s3 to production-s3 and update database paths.  
 Ability to run the below command in terminal to perform the migration: 
+
 `$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
 
 ### Dependencies 
-- AWS CLI installed and configured.  
+- AWS CLI installed and configured ().  
 - All resources must be valid `legacy-s3` `production-s3` `production-db`
 - Pipenv installed and configured
-- 
 
 ### Preparing the development 
 
@@ -29,7 +29,8 @@ Ability to run the below command in terminal to perform the migration:
 - Activate virtualenv: `pipenv shell` 
 - Run `pip install -e . ` to install the package in your local env (make sure your virtualenv is active) 
 - Then you can run:
-      `$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
+
+`$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
 
 ### How to Run Test 
 Run tests locally using `make` if virtualenv is active: 
@@ -47,7 +48,9 @@ Pass in the source bucket, target bucket and DB details. All args are required.
 
 - Run `$ avatarMigrate [source_bucket] [target_bucket] [database_url] [database_username] [database_password]`
 
+### To Uninstall package 
 
+- Run ```pip uninstall avatarMigrate``` 
 
 
 ### Things to watchout for!
